@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ProfileLogin" extends="Group">
+
+
+    <script type="text/brightscript" uri="profileLogin.brs" />
+
+    <children>
+
+            <Poster 
+            id="background"
+            uri="pkg:/images/fondo.png"
+            width="1920"
+            height="1080"
+            translation="[0,0]" />    
+
+            <Label
+                id="title"
+                text="Log In"
+                font="font:LargeBoldSystemFont"
+                translation="[200,200]"/>
+            
+            <Label
+                id="textemail"
+                font="font:SmallBoldSystemFont"
+                text=""
+                translation="[200,340]"/>
+
+            <Rectangle
+                id="emailrectangle"
+                color="#00FFFF"
+                width="700"
+                height="5"
+                translation="[200,350]"/>
+
+                <Rectangle
+                id="frontemailrectangle" 
+                color="#FFFFFF"
+                width="700"
+                height="5"
+                translation="[200,350]">
+
+            </Rectangle>                
+            
+            <Label
+                id="email"
+                text="Email"
+                font="font:MediumBoldSystemFont"
+                translation="[200,355]"/>
+
+            <Label
+                id="textpassword"
+                font="font:SmallBoldSystemFont"
+                text=""
+                translation="[200,455]"/>
+
+            <Rectangle
+                id="passwordrectangle"
+                color="#00FFFF"
+                width="700"
+                height="5"
+                translation="[200,465]"/>
+
+                <Rectangle
+                id="frontpasswordrectangle"
+                color="#FFFFFF"
+                width="700"
+                height="5"
+                visible="false"
+                translation="[200,465]">
+
+            </Rectangle> 
+        
+            <Label
+                id="password"
+                text="Password"
+                font="font:MediumBoldSystemFont"
+                translation="[200,470]"/>  
+
+        <Rectangle
+            id="textrectangle"
+            color="#4F6D70"
+            width="700"
+            height="100"
+            translation="[200,650]">
+
+                <Label
+                    id="text"
+                    text="Please visit hulu.com/forgot if you have forgotten your password and return hare to log in with your nwe password."
+                    numLines="3"
+                    lineSpacing="0.5"
+                    wrap="true"
+                    width="650"
+                    horizAlign="left"
+                    color="#FFFFFF"
+                    font="font:SmallBoldSystemFont"/>
+        </Rectangle>
+
+        <Rectangle
+            id="loginrectangle"
+            color="#4F6D70"
+            width="200"
+            height="80"
+            translation="[200,850]">
+
+                <Label
+                    id="loginText"
+                    text="LOG IN"
+                    horizAlign="center"
+                    color="#FFFFFF"
+                    font="font:LargeBoldSystemFont"/>
+        </Rectangle>
+
+
+        <Poster
+            id="logo"
+            uri="pkg:/images/logo.png"
+            width="105"
+            height="35"
+            translation="[1670,70]" />
+        
+        <Keyboard
+            id="keyboard"
+            translation="[260,600]" 
+            keyColor="#000000"
+            visible="false"/>
+ 
+    </children>
+</component> 
