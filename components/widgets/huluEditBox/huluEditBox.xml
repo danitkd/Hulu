@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="huluEditBox" extends="Group">
+
+    <script type="text/brightscript" uri="huluEditBox.brs" />
+
+    <interface>
+        <field id="text" alias="textComponent.text" type="string" />
+        <field id="title" alias="title.text" type="string" />
+        <field id="selected" type="boolean" value="false" alwaysNotify="true" onChange="onSelectedChanged" />
+        <field id="secureMode" type="boolean" value="false" alwaysNotify="true" />
+    </interface>
+
+    <children>
+        <LayoutGroup
+            id="layoutgroup"
+            layoutDirection="vert"
+            horizAlignment="left"
+            translation="[200,200]">
+
+            <Label
+                id="textComponent"
+                text=""
+                font="font:SmallBoldSystemFont"/>
+    
+            <Rectangle
+                id="rectangle"
+                color="#00FFFF"
+                width="700"
+                height="5"
+                visible="false"/>                
+            
+            <LayoutGroup
+                id="groupTitle"
+                layoutDirection="horiz"
+                horizAlignment="left">
+
+                <Label
+                    id="title"
+                    text=""
+                    font="font:MediumBoldSystemFont"
+                    width="600"/>
+                
+                <Label 
+                    id="showText"
+                    text="Show"
+                    color="#867B7B"
+                    font="font:SmallBoldSystemFont"
+                    visible="false"/>
+            </LayoutGroup>
+        </LayoutGroup>
+    </children>
+</component>
