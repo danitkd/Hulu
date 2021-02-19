@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="HuluButton" extends="Group">
+    <interface>
+        <field id="name" alias="label.text" type="string" />
+    </interface>
+
+    <script type="text/brightscript" uri="huluButton.brs" />
+  
+    <children>
+
+        <Rectangle
+            id="rectangle"
+            width="200"
+            height="80">
+
+                <Label
+                    id="label"
+                    text=""
+                    width="200"
+                    height="80"
+                    horizAlign="center"
+                    font="font:LargeBoldSystemFont"/>
+                        
+        </Rectangle>
+
+    </children>
+</component>

@@ -1,18 +1,16 @@
 sub init()
-    m.emailRectangle = m.top.findNode("emailrectangle")
-    m.lineEmail = m.top.findNode("frontemailrectangle")
-    m.passwordRectangle = m.top.findNode("passwordrectangle")
-    m.linePassword = m.top.findNode("frontpasswordrectangle")
-    m.keyBoard = m.top.findNode("keyboard")
-    m.textRectangle = m.top.findNode("textrectangle")
-    m.text = m.top.findNode("text")
-    m.loginRectangle = m.top.findNode("loginrectangle")
-    m.loginText = m.top.findNode("loginText")
-    m.email = m.top.findNode("textemail")
-    m.password = m.top.findNode("textpassword")
+    m.email = m.top.findNode("email")
+    m.password = m.top.findNode("password")
+    m.keyBoard = m.top.findNode("keyBoard")
+    m.buttonLogin = m.top.findNode("buttonlogin")
+    m.infoRectangle = m.top.findNode("inforectangle")
+    m.infoText = m.top.findNode("infotext")
 
-    m.lineEmail.setFocus(true)    
+    m.email.selected = true
+    m.keyBoard.textEditBox.visible = false 
+    m.keyBoard.observeField("text", "sendText")
     sendText()
+    m.email.setFocus(true)
 end sub  
 
 
@@ -20,41 +18,60 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     ?"😐profileLogin😐";key 
     handled = false
     if press then
-        if (key = "OK" or key = "right" and m.lineEmail.hasFocus()) then  'cuando presione OK donde, como poner rectangle1?
+        if (key = "OK" or key = "right" and m.emailRectangle.hasFocus()) then 
             m.keyBoard.visible = true
             m.keyBoard.setFocus(true)
-            m.textRectangle.visible = false
-            m.text.visible = false
-            m.loginRectangle.visible = false
-            m.loginText.visible = false
-            m.emailRectangle.visisble = false
+            m.infoRectangle.visible = false
+            m.infoText.visible = false
+            m.buttonLogin.visible = false
+            alignTextComponents()
             handled = true
         else if (key = "back") then 
-            m.lineEmail.setFocus(true)
+            m.email.selected = true
             m.keyBoard.visible = false 
-            m.textRectangle.visible = true
-            m.text.visible = true
-            m.loginRectangle.visible = true
-            m.loginText.visible = true
-            m.emailRectangle.visible = true 
+            m.infoRectangle.visible = true
+            m.infoText.visible = true
+            m.buttonLogin.visible = true 
             handled = true
         else if (key = "down") then 
-            m.linePassword.visible = true
-            m.emailRectangle.visible = true
-            m.lineEmail.visible = false 
+            if m.email.selected     then    'solo estoy diciendo que si lo tengo seleccionado
+                m.email.selected = false 
+                m.password.selected = true
+            else if m.password.selected then
+                m.password.selected = false
+                m.buttonLogin.setFocus(true)
+            end if
             handled = true  
         else if (key = "up") then 
-            m.linePassword.visible = false
-            m.lineEmail.visible = true
+            if m.buttonLogin.hasFocus()    then    
+                m.password.selected = true
+            else if m.password.selected then
+                m.password.selected = false
+                m.email.selected = true
+                m.email.setFocus(true)
+            end if
             handled = true  
         end if   
     end if
 
     return handled  
-
 end function        
 
 sub sendText()
-   m.info = m.keyBoard.text
-   m.email.text = m.info
+    if m.email.selected = true then 
+        m.email.text = m.keyBoard.text
+    else
+        m.password.text = m.keyBoard.text  
+        'm.password.secureMode = true
+    end if 
 end sub
+
+sub alignTextComponents()
+    if not m.email.isInFocusChain() then 
+        m.keyBoard.text = m.password.text
+    else 
+        m.keyBoard.text = m.email.text
+    end if 
+end sub
+
+' TODO: unobserve field when the user is logged in

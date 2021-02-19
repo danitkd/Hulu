@@ -15,7 +15,7 @@
             id="layoutgroup"
             layoutDirection="vert"
             horizAlignment="left"
-            translation="[200,200]">
+            translation="[200,300]">
 
             <Label
                 id="textComponent"
