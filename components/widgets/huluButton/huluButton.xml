@@ -18,6 +18,7 @@
                     text=""
                     width="200"
                     height="80"
+                    translation="[0,20]"
                     horizAlign="center"
                     font="font:LargeBoldSystemFont"/>
                         
