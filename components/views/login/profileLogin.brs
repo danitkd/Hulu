@@ -15,7 +15,7 @@ end sub
 
 
 function onKeyEvent(key as String, press as Boolean) as Boolean
-    ?"😐profileLogin😐";key 
+    ?"😐 profileLogin :: onKeyEvent ";key;" - press: ";press 
     handled = false
     if press then
         if (key = "OK" or key = "right" and m.emailRectangle.hasFocus()) then 
@@ -34,18 +34,20 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
             m.buttonLogin.visible = true 
             handled = true
         else if (key = "down") then 
-            if m.email.selected     then    'solo estoy diciendo que si lo tengo seleccionado
+            if m.email.selected then    'solo estoy diciendo que si lo tengo seleccionado
                 m.email.selected = false 
                 m.password.selected = true
+                m.password.setFocus(true)
             else if m.password.selected then
                 m.password.selected = false
                 m.buttonLogin.setFocus(true)
             end if
             handled = true  
         else if (key = "up") then 
-            if m.buttonLogin.hasFocus()    then    
+            if m.buttonLogin.hasFocus() then    
                 m.password.selected = true
-            else if m.password.selected then
+                m.password.setFocus(true)
+            else if m.password.hasFocus() then
                 m.password.selected = false
                 m.email.selected = true
                 m.email.setFocus(true)

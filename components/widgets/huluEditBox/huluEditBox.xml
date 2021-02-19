@@ -6,8 +6,8 @@
     <interface>
         <field id="text" alias="textComponent.text" type="string" />
         <field id="title" alias="title.text" type="string" />
-        <field id="selected" type="boolean" value="false" alwaysNotify="true" onChange="onSelectedChanged" />
-        <field id="secureMode" type="boolean" value="false" alwaysNotify="true" />
+        <field id="selected" type="bool" value="false" alwaysNotify="true" onChange="onSelectedChanged" />
+        <field id="secureMode" type="bool" value="false" alwaysNotify="true" />
     </interface>
 
     <children>
