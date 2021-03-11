@@ -11,6 +11,7 @@ sub init()
     m.keyBoard.observeField("text", "sendText")
     sendText()
     m.email.setFocus(true)
+    createTask()
 end sub  
 
 
@@ -19,12 +20,16 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     handled = false
     if press then
         if (key = "OK" or key = "right" and m.emailRectangle.hasFocus()) then 
+            if (m.email.selected(true) or m.password.selected(true)) then
             m.keyBoard.visible = true
             m.keyBoard.setFocus(true)
             m.infoRectangle.visible = false
             m.infoText.visible = false
             m.buttonLogin.visible = false
             alignTextComponents()
+            else if (m.buttonLogin.hasFocus()) then 
+                createTask()
+            end if 
             handled = true
         else if (key = "back") then 
             m.email.selected = true
@@ -77,3 +82,7 @@ sub alignTextComponents()
 end sub
 
 ' TODO: unobserve field when the user is logged in
+
+sub createTask()
+
+end sub 
