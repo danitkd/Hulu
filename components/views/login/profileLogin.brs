@@ -11,7 +11,6 @@ sub init()
     m.keyBoard.observeField("text", "sendText")
     sendText()
     m.email.setFocus(true)
-    createTask()
 end sub  
 
 
@@ -19,20 +18,22 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
     ?"😐 profileLogin :: onKeyEvent ";key;" - press: ";press 
     handled = false
     if press then
-        if (key = "OK" or key = "right" and m.emailRectangle.hasFocus()) then 
-            if (m.email.selected(true) or m.password.selected(true)) then
-            m.keyBoard.visible = true
-            m.keyBoard.setFocus(true)
-            m.infoRectangle.visible = false
-            m.infoText.visible = false
-            m.buttonLogin.visible = false
-            alignTextComponents()
-            else if (m.buttonLogin.hasFocus()) then 
+        if (key = "OK" or key = "right") then
+            if(m.email.isInFocusChain() or m.password.isInFocusChain()) 
+                m.keyBoard.visible = true
+                m.keyBoard.setFocus(true)
+                m.infoRectangle.visible = false
+                m.infoText.visible = false
+                m.buttonLogin.visible = false
+                alignTextComponents()
+            else if (m.buttonLogin.isInFocusChain()) then 
                 createTask()
             end if 
             handled = true
         else if (key = "back") then 
             m.email.selected = true
+            m.password.selected = false
+            m.email.setFocus(true)
             m.keyBoard.visible = false 
             m.infoRectangle.visible = true
             m.infoText.visible = true
@@ -42,10 +43,14 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
             if m.email.selected then    'solo estoy diciendo que si lo tengo seleccionado
                 m.email.selected = false 
                 m.password.selected = true
+                m.email.setFocus(false)
                 m.password.setFocus(true)
+                print "### setting focus to password"
             else if m.password.selected then
                 m.password.selected = false
+                m.password.setFocus(false)
                 m.buttonLogin.setFocus(true)
+                print "### setting focus to login"
             end if
             handled = true  
         else if (key = "up") then 
@@ -60,7 +65,6 @@ function onKeyEvent(key as String, press as Boolean) as Boolean
             handled = true  
         end if   
     end if
-
     return handled  
 end function        
 
@@ -84,5 +88,16 @@ end sub
 ' TODO: unobserve field when the user is logged in
 
 sub createTask()
+    print "#### CHICHOMBIA"
+    m.infoTask = CreateObject("roSGNode", "LogInTask")
+    m.infoTask.observeField("output", "onInfoReady")
+    m.infoTask.control = "RUN"
+end sub 
 
+sub onInfoReady()
+    ?"onInfoReady() ";m.infoTask.output
+
+    m.infoTask.control = "STOP"
+    m.infoTask.unobserveField("output")
+    m.infoTask = invalid
 end sub 
