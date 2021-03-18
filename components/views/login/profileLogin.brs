@@ -88,16 +88,22 @@ end sub
 ' TODO: unobserve field when the user is logged in
 
 sub createTask()
-    print "#### CHICHOMBIA"
+    print "#### creating task"
     m.infoTask = CreateObject("roSGNode", "LogInTask")
-    m.infoTask.observeField("output", "onInfoReady")
+    m.infoTask.observeField("output", "onTokenReceived")
     m.infoTask.control = "RUN"
+    m.infoTask.user = m.email.text 
+    m.infoTask.password = m.password.text 
 end sub 
 
-sub onInfoReady()
-    ?"onInfoReady() ";m.infoTask.output
-
+sub onTokenReceived()
+    ?"onTokenReceived() ";m.infoTask.output
+    m.top.getScene().callFunc("displayHome")
     m.infoTask.control = "STOP"
+    ' Guardar token en las globales
+    ' Llevar al usuario a pantalla working on it
+        ' Crear un rowlist y alimentarlo con el contenido recibido al llamar GET /vod
+    ' TODO: Cuando haya terminado la pantalla del rowlist, guardar token en el registry
     m.infoTask.unobserveField("output")
     m.infoTask = invalid
 end sub 
