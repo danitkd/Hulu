@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="LogInTask" extends="Task">
     <interface>
-       <field id="output" type="node"/>
+       <field id="output" type="string"/>
        <field id="user" type="string"/> 
-       <field id="code" type="string" />
+       <field id="password" type="string" />
     </interface>
    
     <script type="text/brightscript" uri="logInTask.brs" /> 
