@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="MainScene" extends="Scene">
+   
+    <interface>
+       <function name="displayHome" />
+    </interface>
+
     <script type="text/brightscript" uri="mainScene.brs" /> 
 
     <children>
         <ProfileLogin
                 id="profileLogin" />
+         <HomeView 
+                id="homeView" />
     </children>
 </component>
