@@ -4,6 +4,11 @@ sub init()
     m.homeView = m.top.findNode("homeView")
     m.homeView.visible = false
     m.profileLogin.setFocus(true)
+    addGlobalFields()
+end sub
+
+sub addGlobalFields()
+    m.global.addField("token","string", true)   'al hacer esto al inicio aseguro que global tiene un campo llamado token
 end sub
 
 sub displayHome()
