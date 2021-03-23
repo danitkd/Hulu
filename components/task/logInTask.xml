@@ -2,7 +2,8 @@
 <component name="LogInTask" extends="Task">
     <interface>
        <field id="output" type="string"/>
-       <field id="user" type="string"/> 
+       <field id="user" type="string"/>
+       <field id="token" type="string"/> 
        <field id="password" type="string" />
     </interface>
    
