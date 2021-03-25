@@ -1,6 +1,6 @@
 sub init()
-    m.baseUrl = "http://192.168.0.7:8080/"
-    m.moviesUrl ="http://192.168.0.7:8080/vod?filter=movie"
+    m.baseUrl = "http://192.168.1.22:8080/"
+    m.moviesUrl = "http://192.168.1.22:8080/vod?filter=movie"
     m.top.functionName = "requestInformation"
 end sub
 
@@ -14,17 +14,21 @@ sub requestInformation()
     m.top.output = response.apiToken 
 
     ?"         "
-    ?"✌we're in the task!!!✌";respose
+    ?"✌we're in the task!!!✌";response
 end sub
 
 sub requestMovies()
-    movies = CreateObject("roUrlTransfer")
-    movies.AddHeader("token",m.global.token)
-    movies.setUrl(m.moviesUrl)
-    moviesBody = movies.getToString()
+    moviesRequest = CreateObject("roUrlTransfer")
+    ?"TOKEN REQUEST MOVIES"; m.global.token
+    moviesRequest.AddHeader("X-API-TOKEN",m.global.token) 'X-API-TOKEN es porque así esta en la API 
+    moviesRequest.setUrl(m.moviesUrl)
+    moviesBody = moviesRequest.getToString()
     responseMovies = parseJson(moviesBody)
-    m.top.output = moviesBody
-
+    'm.top.outputArray = responseMovies
+    'aqui me voy a otra funcion a arma el CN es el content del rowlist
+    
     ?"         "
     ?"📹📹 MOVIES IN THE TASK";responseMovies
 end sub 
+
+'aqui la func que hará el CN 
