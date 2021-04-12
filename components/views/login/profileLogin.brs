@@ -99,14 +99,14 @@ end sub
 sub onTokenReceived()
     ?"onTokenReceived()";m.infoTask.output
     m.global.token = m.infoTask.output
-    ?"GLOBAL() 🤡🤡";m.global.token
-    m.top.getScene().callFunc("displayHome")    
+    ?"GLOBAL() 🤡🤡";m.global.token   
     m.infoTask.control = "STOP"
     m.infoTask.unobserveField("output")
     m.infoTask = invalid
+    m.top.getScene().callFunc("displayHome") 
 end sub 
 
-' Guardar token en las globales
+' Guardar token en las globales -> DONE!!
     ' Llevar al usuario a pantalla working on it -> DONE!!!
         ' Crear un rowlist y alimentarlo con el contenido recibido al llamar GET /vod
     ' TODO: Cuando haya terminado la pantalla del rowlist, guardar token en el registry
