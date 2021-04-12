@@ -1,6 +1,5 @@
 sub init()
-    m.baseUrl = "http://192.168.1.22:8080/"
-    m.moviesUrl = "http://192.168.1.22:8080/vod?filter=movie"
+    m.baseUrl = "http://192.168.0.6:8080/"
     m.top.functionName = "requestInformation"
 end sub
 
@@ -17,18 +16,40 @@ sub requestInformation()
     ?"✌we're in the task!!!✌";response
 end sub
 
-sub requestMovies()
+sub requestMovies() 'como sé que la FN se va para aquí?
     moviesRequest = CreateObject("roUrlTransfer")
-    ?"TOKEN REQUEST MOVIES"; m.global.token
-    moviesRequest.AddHeader("X-API-TOKEN",m.global.token) 'X-API-TOKEN es porque así esta en la API 
-    moviesRequest.setUrl(m.moviesUrl)
+    ?"TOKEN REQUEST MOVIES"; m.top.token
+    moviesRequest.AddHeader("X-API-TOKEN",m.top.token) 'X-API-TOKEN es porque así esta en la API 
+    moviesRequest.setUrl(m.baseUrl + "vod?filter=movie")
     moviesBody = moviesRequest.getToString()
     responseMovies = parseJson(moviesBody)
     'm.top.outputArray = responseMovies
-    'aqui me voy a otra funcion a arma el CN es el content del rowlist
+    createContent(responseMovies)
     
     ?"         "
     ?"📹📹 MOVIES IN THE TASK";responseMovies
 end sub 
 
-'aqui la func que hará el CN 
+
+sub createContent(responseMovies)
+    content = createObject("RoSGNode", "ContentNode")
+    sectionMovies = content.createChild("ContentNode")
+    sectionMovies.title = "MOVIES"
+
+    for i=0 to responseMovies.count() - 1
+        movie = responseMovies[i]
+        itemCN = sectionMovies.createChild("ContentNode")
+        itemCN.id = movie.id
+        itemCN.title = movie.title 
+        itemCN.contentType = movie.type
+        itemCN.description = movie.description
+        itemCN.HDPosterUrl = movie.poster 
+
+        if movie.poster = invalid then 
+            itemCN.HDPosterUrl = "pkg:/images/rey.png"
+        end if 
+        
+    end for 
+
+    m.top.outputNode = content
+end sub 
