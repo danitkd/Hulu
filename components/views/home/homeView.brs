@@ -4,7 +4,7 @@ end sub
 
 sub createTask()
     ?"working in the task"
-    m.moviesTask = CreateObject("roSGNode", "LogInTask")
+    m.moviesTask = CreateObject("roSGNode", "RequestTask")
     m.moviesTask.token = m.global.token 'aqui le paso a token que es un field de la tarea lo de la global
     m.moviesTask.observeField("outputNode", "onMoviesReceived")
     m.moviesTask.functionName = "requestMovies"
@@ -19,3 +19,4 @@ sub onMoviesReceived()
     m.moviesTask = invalid
     m.rowList.setFocus(true)
 end sub
+

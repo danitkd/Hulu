@@ -89,7 +89,7 @@ end sub
 
 sub createTask()
     print "#### creating task"
-    m.infoTask = CreateObject("roSGNode", "LogInTask")
+    m.infoTask = CreateObject("roSGNode", "RequestTask")
     m.infoTask.observeField("output", "onTokenReceived")
     m.infoTask.control = "RUN"
     m.infoTask.user = m.email.text 

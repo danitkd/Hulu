@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="LogInTask" extends="Task">
+<component name="RequestTask" extends="Task">
     <interface>
        <field id="output" type="string"/>
        <field id="outputNode" type="node"/>
@@ -10,7 +10,7 @@
        <field id="filter" type="string" />
     </interface>
    
-    <script type="text/brightscript" uri="logInTask.brs" /> 
+    <script type="text/brightscript" uri="requestTask.brs" /> 
 
     <children>    
     </children>
