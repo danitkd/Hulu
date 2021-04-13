@@ -2,7 +2,7 @@
 <component name="HomeView" extends="Group">
 
      <interface>
-         <function name="createTask" />   
+         <function name="createTask" />  
      </interface>
 
     <script type="text/brightscript" uri="homeView.brs" /> 
@@ -11,11 +11,11 @@
                 
         <RowList 
             id="rowList"
-            numRows="1"
+            numRows="2"
             translation="[50,100]"
             showRowLabel="[true]"
-            rowItemSpacing="[[50,0]]"
-            itemSize="[1500,500]"
+            rowItemSpacing="[[50,0],[50,50]]"
+            itemSize="[2000,300]"
             rowItemSize="[[300,500]]"
             drawFocusFeedback="true" />   <!--'por defecto esta en true, aqui es si quiero manejar el foco o no  -->
                 
