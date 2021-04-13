@@ -105,8 +105,3 @@ sub onTokenReceived()
     m.infoTask = invalid
     m.top.getScene().callFunc("displayHome") 
 end sub 
-
-' Guardar token en las globales -> DONE!!
-    ' Llevar al usuario a pantalla working on it -> DONE!!!
-        ' Crear un rowlist y alimentarlo con el contenido recibido al llamar GET /vod
-    ' TODO: Cuando haya terminado la pantalla del rowlist, guardar token en el registry

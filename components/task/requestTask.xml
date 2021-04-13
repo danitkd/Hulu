@@ -3,7 +3,6 @@
     <interface>
        <field id="output" type="string"/>
        <field id="outputNode" type="node"/>
-       <field id="outputArray" type="array"/>
        <field id="user" type="string"/>
        <field id="token" type="string"/> 
        <field id="password" type="string" />
