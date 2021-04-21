@@ -1,5 +1,5 @@
 sub init()
-    m.baseUrl = "http://192.168.0.6:8080/"
+    m.baseUrl = "http://192.168.1.19:8080/"
     m.top.functionName = "requestInformation"
 end sub
 
@@ -30,7 +30,6 @@ function getResponse(url as String, headers = invalid)
     if headers <> invalid then
         for each item in headers.Items()
             request.AddHeader(item.key, item.value)
-            print "🧐" + item.key + " - " + item.value
         end for
     end if
     
