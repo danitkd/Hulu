@@ -2,21 +2,26 @@
 <component name="HomeView" extends="Group">
 
      <interface>
-         <function name="createTask" />   
+         <function name="createTask" />  
      </interface>
 
     <script type="text/brightscript" uri="homeView.brs" /> 
 
     <children>
+        <OverHang
+            id="title"
+            title="HULU DANI TKD"
+            translation="[0,0]"/>
                 
         <RowList 
             id="rowList"
-            numRows="1"
-            translation="[50,100]"
+            numRows="2"
+            translation="[80,240]"
             showRowLabel="[true]"
-            rowItemSpacing="[[50,0]]"
-            itemSize="[1500,500]"
-            rowItemSize="[[300,500]]"
+            rowItemSpacing="[[30,300]]"
+            itemSpacing="[200,50]"
+            itemSize="[2000,500]"
+            rowItemSize="[[400,400],[300,300]]"
             drawFocusFeedback="true" />   <!--'por defecto esta en true, aqui es si quiero manejar el foco o no  -->
                 
         </children>
