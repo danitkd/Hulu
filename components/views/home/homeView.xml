@@ -8,15 +8,23 @@
     <script type="text/brightscript" uri="homeView.brs" /> 
 
     <children>
+        <Label
+            id="title"
+            text="HULU DANI TKD"
+            font="font:MediumBoldSystemFont"
+            color="#DFECE1"
+            translation="[750,200]"/>
+
                 
         <RowList 
             id="rowList"
             numRows="2"
-            translation="[50,100]"
+            translation="[80,350]"
             showRowLabel="[true]"
-            rowItemSpacing="[[50,0],[50,50]]"
-            itemSize="[2000,300]"
-            rowItemSize="[[300,500]]"
+            rowItemSpacing="[[30,300]]"
+            itemSpacing="[200,50]"
+            itemSize="[2000,500]"
+            rowItemSize="[[400,400],[300,300]]"
             drawFocusFeedback="true" />   <!--'por defecto esta en true, aqui es si quiero manejar el foco o no  -->
                 
         </children>
