@@ -1,5 +1,6 @@
 sub init()
     m.rowlist = m.top.findNode("rowlist")
+    m.rowList.observeField("rowItemSelected", "onRowItemSelectedChanged")
 end sub
 
 sub createTask()
@@ -20,3 +21,22 @@ sub onContentReceived()
     m.rowList.setFocus(true)
 end sub
 
+sub onRowItemSelectedChanged()
+    ?"onRowItemSelectedChanged() ";m.rowList.rowItemSelected
+    index = m.rowList.rowItemSelected    
+    item = m.rowList.content.getChild(index[0]).getChild(index[1])
+    id = item.id 
+    ?"😍";id
+end sub
+
+
+function setVideo() as void
+        videoContent = createObject("RoSGNode", "ContentNode")
+        videoContent.url = "https://roku.s.cpl.delvenetworks.com/media/59021fabe3b645968e382ac726cd6c7b/60b4a471ffb74809beb2f7d5a15b3193/roku_ep_111_segment_1_final-cc_mix_033015-a7ec8a288c4bcec001c118181c668de321108861.m3u8"
+        videoContent.title = "Test Video"
+        videoContent.streamformat = "hls"
+
+        m.video = m.top.findNode("video")
+        m.video.content = videoContent
+        m.video.control = "play"
+end function 
