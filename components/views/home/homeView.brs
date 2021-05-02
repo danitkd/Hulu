@@ -1,5 +1,6 @@
 sub init()
     m.rowlist = m.top.findNode("rowlist")
+    m.video = m.top.findNode("video")    
     m.rowList.observeField("rowItemSelected", "onRowItemSelectedChanged")
 end sub
 
@@ -25,18 +26,48 @@ sub onRowItemSelectedChanged()
     ?"onRowItemSelectedChanged() ";m.rowList.rowItemSelected
     index = m.rowList.rowItemSelected    
     item = m.rowList.content.getChild(index[0]).getChild(index[1])
+    title = item.title
     id = item.id 
+    createStreamTask(id, title) 
     ?"😍";id
 end sub
 
+sub createStreamTask(id, title)
+    ?"working in the stream task"
+    m.streamTask = CreateObject("roSGNode", "RequestTask")
+    m.streamTask.token = m.global.token 'aqui le paso a token que es un field de la tarea lo de la global
+    m.streamTask.id = id
+    m.streamTask.title = title
+    m.streamTask.observeField("outputNode", "onStreamReceived")
+    m.streamTask.functionName = "getStream"
+    m.streamTask.control = "RUN" 
+end sub
 
-function setVideo() as void
-        videoContent = createObject("RoSGNode", "ContentNode")
-        videoContent.url = "https://roku.s.cpl.delvenetworks.com/media/59021fabe3b645968e382ac726cd6c7b/60b4a471ffb74809beb2f7d5a15b3193/roku_ep_111_segment_1_final-cc_mix_033015-a7ec8a288c4bcec001c118181c668de321108861.m3u8"
-        videoContent.title = "Test Video"
-        videoContent.streamformat = "hls"
+sub onStreamReceived()  
+    ?"onStreamReceived()"  
+    m.video.content = m.streamTask.outputNode
+    m.streamTask.control = "STOP"
+    m.streamTask.unobserveField("outputNode")
+    m.streamTask = invalid
+    m.video.visible = true
+    m.video.control = "play"
+    m.video.setFocus(true)
+end sub 
 
-        m.video = m.top.findNode("video")
-        m.video.content = videoContent
-        m.video.control = "play"
-end function 
+function onKeyEvent(key as String, press as Boolean) as Boolean
+    ?":D homeView :: onKeyEvent ";key;" - press: ";press 
+    handled = false
+    if press then
+        if (key = "back") then
+            if(m.video.isInFocusChain())
+                m.video.control = "pause"
+                m.video.visible = false
+                m.rowList.setFocus(true)
+                handled = true
+            end if
+        end if
+        
+    end if
+
+    return handled
+end function

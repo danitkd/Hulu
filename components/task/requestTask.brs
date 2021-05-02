@@ -1,5 +1,5 @@
 sub init()
-    m.baseUrl = "http://192.168.1.19:8080/"
+    m.baseUrl = "http://192.168.0.13:8080/"
     m.top.functionName = "requestInformation"
 end sub
 
@@ -13,7 +13,7 @@ sub requestInformation()
     ?"✌we're in the task!!!✌";response
 end sub
 
-sub requests() 'como sé que la FN se va para aquí?
+sub requests() 'FN se va para aquí
     header = {}
     header["X-API-TOKEN"] = m.top.token
     '{ "X-API-TOKEN": m.top.token }
@@ -22,6 +22,19 @@ sub requests() 'como sé que la FN se va para aquí?
     ?"TOKEN REQUEST MOVIES"; m.top.token
     createContent(moviesResponse, seriesResponse)
 end sub 
+
+sub getStream()
+    header = {}
+    header["X-API-TOKEN"] = m.top.token
+    streamResponse = getResponse(m.baseUrl + "vod/" + m.top.id +"/stream?drm=false", header)
+    videoContent = createObject("RoSGNode", "ContentNode")
+    videoContent.url = streamResponse.url 
+    videoContent.streamFormat = streamResponse.type
+    videoContent.title = m.top.title 
+    
+    m.top.outputNode = videoContent
+
+end sub
 
 function getResponse(url as String, headers = invalid)
     request = CreateObject("roUrlTransfer")

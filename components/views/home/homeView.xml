@@ -21,8 +21,12 @@
             rowItemSpacing="[[30,300]]"
             itemSpacing="[200,50]"
             itemSize="[2000,500]"
-            rowItemSize="[[400,400],[300,300]]"
+            rowItemSize="[[800,450],[400,400]]"
             drawFocusFeedback="true" />   <!--'por defecto esta en true, aqui es si quiero manejar el foco o no  -->
-                
+
+        <Video
+            id="video"
+            visible="false"/>   
+
         </children>
 </component>
