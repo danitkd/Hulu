@@ -12,8 +12,8 @@ The api for this project is a local server which is included in the deliverables
 This local server requires java 11 https://www.oracle.com/co/java/technologies/javase/jdk11-archive-downloads.html.
 
 # Installation
-To spin up the server download the jar file and run `java -jar resty2-1.0.0-SNAPSHOT.jar` it will be running on 8080 port
-After this api should be available at http://<your_ip>:8080
+To spin up the server download the jar file and run `java -jar resty2-1.0.0-SNAPSHOT.jar`, it will be running on 8080 port.
+After this, api should be available at http://<your_ip>:8080
 
 Once the server is running upload the `roku-deploy.zip` file into the target device.
 
